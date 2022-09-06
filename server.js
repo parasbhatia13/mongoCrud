@@ -10,6 +10,8 @@ app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended:false}))
 //enable CORS -> Cross Origine Resource Sharing -> communication among various ports
 app.use(cors()) 
+//create port
+let port = process.env.PORT || 8080
 //import fetch insert update delete modules
 let fetch = require('./fetch/fetch')
 let insert = require('./insert/insert')
@@ -21,8 +23,9 @@ app.use('/insert',insert)
 app.use('/update',update)
 app.use('/delete',remov)
 //assign port no
-app.listen(8080)
-console.log('Server listening port no 8080')
+app.listen(port,()=>{
+    console.log("Server running on port no :- ",port)
+})
 /*
     >node server
     Test following URLs with postman
